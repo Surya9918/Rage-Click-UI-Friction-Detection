@@ -1,0 +1,65 @@
+# Configuration for Rage-Click & UI Friction Detection System
+
+# Telemetry and Windowing Settings
+window_seconds: 5
+rapid_click_interval_ms: 300
+direction_change_angle: 90
+movement_threshold_px: 5.0
+scroll_window_seconds: 2
+velocity_spike_clamp_px_s: 10000.0
+
+# Inference & Intervention Settings
+friction_threshold: 0.85
+intervention_cooldown_seconds: 30
+
+# Feature Names (Ordered)
+features:
+  - click_frequency
+  - rapid_fire_clicks
+  - maximum_cursor_velocity
+  - erratic_direction_changes
+  - scroll_thrashing
+
+# Dataset Generation Settings
+dataset:
+  samples: 10000
+  friction_ratio: 0.10
+  noise_level: 0.18
+  train_split: 0.70
+  val_split: 0.15
+  test_split: 0.15
+  random_seed: 42
+
+# Labeling Mode: 'heuristic' (Mode A) or 'ground_truth' (Mode B)
+labeling:
+  mode: "heuristic"
+  label_noise_rate: 0.03  # Realistic proxy label uncertainty
+  heuristic_thresholds:
+    rapid_fire_clicks: 3
+    erratic_direction_changes: 4
+    scroll_thrashing: 400.0
+    click_frequency: 2.0
+    combined_score_threshold: 0.65
+
+# Model Training Settings
+training:
+  epochs: 80
+  batch_size: 32
+  learning_rate: 0.001
+  random_seed: 42
+  class_balance_strategy: "class_weight"  # Options: 'class_weight' or 'smote'
+  early_stopping_patience: 10
+  reduce_lr_patience: 5
+  reduce_lr_factor: 0.5
+  min_lr: 0.00001
+  dropout_rate: 0.20
+
+# Evaluation Settings
+evaluation:
+  thresholds:
+    - 0.50
+    - 0.60
+    - 0.70
+    - 0.80
+    - 0.85
+    - 0.90

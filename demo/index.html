@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rage-Click & UI Friction Detection Demo (FFNN)</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-layout">
+    <main class="storefront-panel">
+      <header class="navbar">
+        <div class="brand">
+          <span class="brand-icon">⚡</span>
+          <span class="brand-text">Nova Cloud Store</span>
+        </div>
+        <nav class="nav-links">
+          <button id="nav-home" class="interactive-btn nav-btn active">Home</button>
+          <button id="nav-products" class="interactive-btn nav-btn">Products</button>
+          <button id="nav-pricing" class="interactive-btn nav-btn">Pricing</button>
+          <button id="nav-support" class="interactive-btn nav-btn">Support</button>
+        </nav>
+      </header>
+
+      <div class="scrollable-content-area" id="scrollable-content">
+        <section class="hero-section">
+          <span class="badge">Next-Gen Cloud Compute</span>
+          <h1 class="hero-title">Experience Ultra-Fast Serverless Workloads</h1>
+          <p class="hero-subtext">
+            Build, test, and deploy resilient neural pipelines with instantaneous cold-starts and global edge acceleration.
+          </p>
+          <div class="hero-cta-group">
+            <button id="download-btn" class="interactive-btn primary-cta">Download CLI</button>
+            <button id="learn-more-btn" class="interactive-btn secondary-cta">Learn More</button>
+            <button id="buy-now-btn" class="interactive-btn accent-cta">Buy Now</button>
+          </div>
+        </section>
+
+        <section class="simulation-banner">
+          <div class="sim-header">
+            <h3>🔬 Automated Behavioral Benchmark</h3>
+            <p>Don't want to click manually? Inject deterministic synthetic telemetry bursts:</p>
+          </div>
+          <div class="sim-buttons">
+            <button id="sim-rage-btn" class="sim-action-btn rage-mode">
+              <span class="btn-icon">🎭</span> Simulate Rage Click
+            </button>
+            <button id="sim-normal-btn" class="sim-action-btn normal-mode">
+              <span class="btn-icon">🖱</span> Normal Interaction
+            </button>
+          </div>
+        </section>
+
+        <section class="products-grid-section">
+          <h2 class="section-title">Compute Tiers</h2>
+          <div class="cards-container">
+            <article class="product-card" id="product-card-a">
+              <div class="card-tag">Starter</div>
+              <h3>Micro Node v2</h3>
+              <p class="card-desc">Optimized for lightweight inference, edge collectors, and low-latency webhook dispatch.</p>
+              <div class="price">$19 <span>/ mo</span></div>
+              <ul class="features-list">
+                <li>2 vCPU • 4GB RAM</li>
+                <li>Unlimited HTTP/gRPC API Calls</li>
+                <li>Single-zone failover</li>
+              </ul>
+              <button id="card-a-select" class="interactive-btn select-btn">Select Node A</button>
+            </article>
+
+            <article class="product-card featured" id="product-card-b">
+              <div class="card-tag highlight">Most Popular</div>
+              <h3>Pro Compute X</h3>
+              <p class="card-desc">Dedicated GPU-accelerated node for continuous training and high-throughput real-time telemetry.</p>
+              <div class="price">$89 <span>/ mo</span></div>
+              <ul class="features-list">
+                <li>8 vCPU • 32GB RAM</li>
+                <li>NVIDIA Tensor-Core Tensor Core</li>
+                <li>Sub-millisecond model inference</li>
+              </ul>
+              <button id="card-b-select" class="interactive-btn select-btn highlight-btn">Select Node B</button>
+            </article>
+
+            <article class="product-card" id="product-card-c">
+              <div class="card-tag">Enterprise</div>
+              <h3>Ultra Cluster</h3>
+              <p class="card-desc">Full bare-metal cluster with custom private telemetry ingress, dedicated VPC, and 24/7 SLA.</p>
+              <div class="price">$299 <span>/ mo</span></div>
+              <ul class="features-list">
+                <li>32 vCPU • 128GB RAM</li>
+                <li>Redundant Multi-Region VPC</li>
+                <li>Zero-data loss guarantees</li>
+              </ul>
+              <button id="card-c-select" class="interactive-btn select-btn">Select Node C</button>
+            </article>
+          </div>
+        </section>
+
+        <section class="scroll-test-section">
+          <h2>Interactive FAQ & Knowledge Base</h2>
+          <p class="hint-text">💡 Tip: Rapidly scrolling up and down in this area simulates <em>scroll thrashing</em>.</p>
+          <div class="faq-list">
+            <div class="faq-item" id="faq-1">
+              <h4>How does client-side windowing work?</h4>
+              <p>Interaction events (mousemove, mousedown, mouseup, scroll) are batched into non-overlapping 5-second observation frames. The client extracts 5 aggregated behavioral signals, avoiding heavy per-event network requests.</p>
+            </div>
+            <div class="faq-item" id="faq-2">
+              <h4>What distinguishes a rage-click from normal clicking?</h4>
+              <p>Rage-clicking features rapid consecutive clicks on the <em>identical DOM target</em> within 300 ms, often combined with elevated cursor velocity bursts or abrupt directional reversals.</p>
+            </div>
+            <div class="faq-item" id="faq-3">
+              <h4>Why is the inference threshold configurable (0.85 default)?</h4>
+              <p>Threshold selection controls the trade-off between false-positive user interventions (which annoy calm users) and false negatives (missing users who are quietly struggling).</p>
+            </div>
+            <div class="faq-item" id="faq-4">
+              <h4>Is user privacy preserved?</h4>
+              <p>Yes. The telemetry captures no keystrokes, personal text, or form values. It only tracks coordinate kinematics, timestamps, and target element tags.</p>
+            </div>
+            <div class="faq-item" id="faq-5">
+              <h4>What happens when UI friction is detected?</h4>
+              <p>The system triggers a non-intrusive contextual help intervention with a 30-second cooldown timer to prevent notification fatigue.</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <aside class="dashboard-panel">
+      <div class="dashboard-header">
+        <div class="title-wrap">
+          <span class="dash-badge">ML Ingress</span>
+          <h2>Telemetry & FFNN Monitor</h2>
+        </div>
+        <div class="status-indicator">
+          <span class="status-dot pulsing"></span>
+          <span id="telemetry-status" class="status-text">ACTIVE</span>
+        </div>
+      </div>
+
+      <div class="window-tracker-card">
+        <div class="tracker-info">
+          <span>Observation Window: <strong>5.0s</strong></span>
+          <span id="window-timer-text">Next prediction in 5.0s</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div id="window-progress-bar" class="progress-bar-fill" style="width: 0%;"></div>
+        </div>
+      </div>
+
+      <div class="features-dashboard-grid">
+        <div class="feature-metric-card" id="card-feat-click-freq">
+          <div class="feat-label">Click Frequency</div>
+          <div class="feat-value" id="val-click-freq">0.00 <span class="unit">clicks/s</span></div>
+          <div class="feat-desc">Total clicks / window duration</div>
+        </div>
+
+        <div class="feature-metric-card" id="card-feat-rapid-clicks">
+          <div class="feat-label">Rapid-Fire Clicks</div>
+          <div class="feat-value" id="val-rapid-clicks">0 <span class="unit">events</span></div>
+          <div class="feat-desc">Same target &lt; 300ms</div>
+        </div>
+
+        <div class="feature-metric-card" id="card-feat-velocity">
+          <div class="feat-label">Max Cursor Velocity</div>
+          <div class="feat-value" id="val-cursor-vel">0 <span class="unit">px/s</span></div>
+          <div class="feat-desc">Peak kinematic movement</div>
+        </div>
+
+        <div class="feature-metric-card" id="card-feat-direction">
+          <div class="feat-label">Erratic Dir Changes</div>
+          <div class="feat-value" id="val-direction-changes">0 <span class="unit">turns</span></div>
+          <div class="feat-desc">Vector delta &gt; 90° (&gt; 5px)</div>
+        </div>
+
+        <div class="feature-metric-card full-width" id="card-feat-scroll">
+          <div class="feat-label">Scroll Thrashing</div>
+          <div class="feat-value" id="val-scroll-thrash">0 <span class="unit">px reversed</span></div>
+          <div class="feat-desc">Vertical direction reversal within 2.0s</div>
+        </div>
+      </div>
+
+      <div class="prediction-card" id="prediction-card">
+        <div class="pred-header">
+          <h3>FFNN Friction Prediction</h3>
+          <span class="threshold-tag">Threshold: <span id="threshold-val-display">0.85</span></span>
+        </div>
+
+        <div class="probability-display">
+          <div class="prob-num-wrap">
+            <span class="prob-number" id="prob-percentage">0.0%</span>
+            <span class="prob-caption">Friction Probability</span>
+          </div>
+          <div class="decision-badge badge-normal" id="decision-badge">
+            NORMAL
+          </div>
+        </div>
+
+        <div class="probability-gauge">
+          <div id="gauge-fill" class="gauge-fill" style="width: 0%;"></div>
+          <div class="gauge-threshold-marker" style="left: 85%;"></div>
+        </div>
+        <div class="gauge-labels">
+          <span>0.0 (Calm)</span>
+          <span class="marker-text">85% Trigger</span>
+          <span>1.0 (Friction)</span>
+        </div>
+      </div>
+
+      <div class="explainability-card">
+        <div class="exp-header">
+          <h4>Feature Sensitivity / Activity</h4>
+          <span class="info-pill" title="Local counterfactual sensitivity: measures change in prediction when feature is held at baseline.">Sensitivity</span>
+        </div>
+        <div class="importance-bars">
+          <div class="bar-row">
+            <span class="bar-title">Rapid-Fire Clicks</span>
+            <div class="bar-track"><div id="imp-rapid" class="bar-fill" style="width: 20%;"></div></div>
+            <span id="imp-rapid-val" class="bar-num">20%</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-title">Erratic Direction</span>
+            <div class="bar-track"><div id="imp-dir" class="bar-fill" style="width: 20%;"></div></div>
+            <span id="imp-dir-val" class="bar-num">20%</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-title">Click Frequency</span>
+            <div class="bar-track"><div id="imp-freq" class="bar-fill" style="width: 20%;"></div></div>
+            <span id="imp-freq-val" class="bar-num">20%</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-title">Scroll Thrashing</span>
+            <div class="bar-track"><div id="imp-scroll" class="bar-fill" style="width: 20%;"></div></div>
+            <span id="imp-scroll-val" class="bar-num">20%</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-title">Cursor Velocity</span>
+            <div class="bar-track"><div id="imp-vel" class="bar-fill" style="width: 20%;"></div></div>
+            <span id="imp-vel-val" class="bar-num">20%</span>
+          </div>
+        </div>
+        <p class="exp-disclaimer">* Local feature attribution via perturbation analysis, not causal proof.</p>
+      </div>
+
+      <div class="event-stream-card">
+        <div class="stream-header">
+          <h4>Raw Telemetry Event Stream</h4>
+          <span class="event-counter" id="event-count-badge">0 events in buffer</span>
+        </div>
+        <div class="event-log-box" id="event-log-box">
+          <div class="log-entry system">[SYSTEM] Telemetry Collector initialized. Capturing mousemove, mousedown, mouseup, and scroll...</div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <div class="intervention-modal-overlay" id="intervention-modal">
+    <div class="intervention-card">
+      <div class="card-icon">💡</div>
+      <div class="card-body">
+        <h3>Need a little help?</h3>
+        <p>Looks like you're having trouble finding what you need. Our specialist team or interactive guide is ready to assist.</p>
+        <div class="intervention-actions">
+          <button id="intervention-help-btn" class="intervention-btn primary">Get Help</button>
+          <button id="intervention-dismiss-btn" class="intervention-btn secondary">Dismiss</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/app.js?v=2"></script>
+</body>
+</html>
