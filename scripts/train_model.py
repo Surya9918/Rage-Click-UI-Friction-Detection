@@ -31,7 +31,7 @@ def run_pipeline():
 
     model, scaler, X_test, y_test = train(df_labeled, models_dir)
     
-    evaluate(model, X_test, y_test)
+    evaluate(model, X_test, y_test, models_dir)
 
 if __name__ == "__main__":
     run_pipeline()

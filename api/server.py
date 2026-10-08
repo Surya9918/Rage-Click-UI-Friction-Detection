@@ -92,6 +92,15 @@ def process_telemetry_window(payload: WindowTelemetryPayload):
     result = predict(extracted_features, models_dir=PROJECT_ROOT / "models")
     return PredictionResponse(**result)
 
+@app.get("/api/stats")
+def get_stats():
+    import json
+    metadata_file = PROJECT_ROOT / "models" / "metadata.json"
+    if not metadata_file.exists():
+        return {"accuracy": "N/A", "report_dict": {}}
+    with open(metadata_file, "r") as f:
+        return json.load(f)
+
 demo_dir = PROJECT_ROOT / "demo"
 if demo_dir.exists():
     app.mount("/static", StaticFiles(directory=str(demo_dir)), name="static")

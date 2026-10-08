@@ -437,5 +437,33 @@
     });
   }
 
+  async function fetchModelStats() {
+    try {
+      const response = await fetch("/api/stats");
+      if (!response.ok) throw new Error("Network response was not ok");
+      const stats = await response.json();
+      const statsContent = document.getElementById("model-stats-content");
+      if (statsContent) {
+        if (stats.accuracy !== "N/A") {
+          const accStr = (stats.accuracy * 100).toFixed(2) + "%";
+          const frictionStats = stats.report_dict && stats.report_dict["1"] ? stats.report_dict["1"] : {};
+          statsContent.innerHTML = `
+            <div><strong>Accuracy:</strong> ${accStr}</div>
+            <div style="margin-top: 8px;"><strong>Precision:</strong> ${(frictionStats.precision * 100 || 0).toFixed(2)}% (Friction)</div>
+            <div><strong>Recall:</strong> ${(frictionStats.recall * 100 || 0).toFixed(2)}% (Friction)</div>
+            <div><strong>F1-Score:</strong> ${(frictionStats["f1-score"] * 100 || 0).toFixed(2)}% (Friction)</div>
+          `;
+        } else {
+          statsContent.innerHTML = "<div>Stats unavailable.</div>";
+        }
+      }
+    } catch (err) {
+      console.warn("Failed to fetch model stats:", err);
+      const statsContent = document.getElementById("model-stats-content");
+      if (statsContent) statsContent.innerHTML = "<div>Failed to load stats.</div>";
+    }
+  }
+
+  fetchModelStats();
   requestAnimationFrame(tickWindowProgress);
 })();

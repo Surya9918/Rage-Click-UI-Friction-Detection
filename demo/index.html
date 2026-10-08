@@ -208,6 +208,16 @@
         </div>
       </div>
 
+      <div class="model-stats-card" style="background: var(--bg-surface-lighter); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 16px; margin-bottom: 24px;">
+        <div class="exp-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h4 style="margin: 0; font-size: 0.85rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px;">Model Performance Stats</h4>
+          <span class="info-pill" title="Current Test Set Accuracy">Test Set</span>
+        </div>
+        <div id="model-stats-content" style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-primary);">
+          Loading stats...
+        </div>
+      </div>
+
       <div class="explainability-card">
         <div class="exp-header">
           <h4>Feature Sensitivity / Activity</h4>
@@ -269,6 +279,6 @@
     </div>
   </div>
 
-  <script src="/static/app.js?v=2"></script>
+  <script src="/static/app.js?v=3"></script>
 </body>
 </html>
