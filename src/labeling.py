@@ -5,7 +5,7 @@ class Labeler:
         df_copy = df.copy()
         
         c1 = df_copy["rapid_fire_clicks"] >= 3
-        c2 = (df_copy["erratic_direction_changes"] >= 4) & (df_copy["maximum_cursor_velocity"] >= 1200.0)
+        c2 = (df_copy["erratic_direction_changes"] >= 4) & (df_copy["maximum_cursor_velocity"] >= 6591.0)
         c3 = df_copy["scroll_thrashing"] >= 400.0
         c4 = (df_copy["click_frequency"] >= 2.0) & (df_copy["rapid_fire_clicks"] >= 2)
         

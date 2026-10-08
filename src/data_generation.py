@@ -26,7 +26,7 @@ class SyntheticTelemetryGenerator:
             rows.append({
                 "click_frequency": np.random.uniform(1.8, 4.5),
                 "rapid_fire_clicks": np.random.randint(3, 10),
-                "maximum_cursor_velocity": np.random.uniform(600, 2200),
+                "maximum_cursor_velocity": np.random.uniform(6600, 10000),
                 "erratic_direction_changes": np.random.choice([1, 2, 3, 5], p=[0.3, 0.3, 0.25, 0.15]),
                 "scroll_thrashing": 0.0 if random.random() > 0.15 else np.random.uniform(50, 300),
             })
